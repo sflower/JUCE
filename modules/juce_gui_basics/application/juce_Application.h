@@ -157,6 +157,16 @@ public:
         by the operating system.
     */
     void resumed() override;
+    
+    /** This method is called when the application window is reported as visible by
+        the operating system
+     */
+    virtual void visible();
+    
+    /** This method is called when the application window is reported as hidden from
+        view by the operating system
+    */
+    virtual void hidden();
 
     /** If any unhandled exceptions make it through to the message dispatch loop, this
         callback will be triggered, in case you want to log them or do some other

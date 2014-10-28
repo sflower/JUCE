@@ -130,6 +130,8 @@ public:
         @see isVisible
     */
     bool isShowing() const;
+    
+    bool isOcclusionVisible() const;
 
     //==============================================================================
     /** Makes this component appear as a window on the desktop.
@@ -2275,6 +2277,7 @@ private:
     MouseCursor cursor;
     ImageEffectFilter* effect;
     ScopedPointer <CachedComponentImage> cachedImage;
+    bool occlusionVisibility;
 
     class MouseListenerList;
     friend class MouseListenerList;
@@ -2351,6 +2354,8 @@ private:
     static void giveAwayFocus (bool sendFocusLossEvent);
     void sendEnablementChangeMessage();
     void sendVisibilityChangeMessage();
+    void sendOcclusionVisibilityChangeMessage();
+    void occlusionVisibilityStateChanged (bool occlusionVisible);
 
     struct ComponentHelpers;
     friend struct ComponentHelpers;

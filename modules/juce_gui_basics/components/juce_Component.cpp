@@ -486,6 +486,7 @@ Component::Component()
     effect (nullptr),
     componentFlags (0),
     componentTransparency (0)
+    occlusionVisibility (true)
 {
 }
 
@@ -495,6 +496,7 @@ Component::Component (const String& name)
     lookAndFeel (nullptr),
     effect (nullptr),
     componentFlags (0),
+    occlusionVisibility (true),
     componentTransparency (0)
 {
 }
@@ -604,6 +606,19 @@ void Component::sendVisibilityChangeMessage()
 
     if (! checker.shouldBailOut())
         componentListeners.callChecked (checker, &ComponentListener::componentVisibilityChanged, *this);
+}
+
+bool Component::isOcclusionVisible() const
+{
+    return occlusionVisibility;
+}
+
+void Component::sendOcclusionVisibilityChangeMessage()
+{
+    BailOutChecker checker (this);
+    
+    if (! checker.shouldBailOut())
+        componentListeners.callChecked (checker, &ComponentListener::componentOcclusionVisibilityChanged, *this);
 }
 
 bool Component::isShowing() const
@@ -780,6 +795,10 @@ void Component::userTriedToCloseWindow()
 void Component::minimisationStateChanged (bool) {}
 
 float Component::getDesktopScaleFactor() const  { return Desktop::getInstance().getGlobalScaleFactor(); }
+void Component::occlusionVisibilityStateChanged (bool occlusionVisible)
+{
+    occlusionVisibility = occlusionVisible;
+}
 
 //==============================================================================
 void Component::setOpaque (const bool shouldBeOpaque)

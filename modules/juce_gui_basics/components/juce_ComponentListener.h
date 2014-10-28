@@ -67,6 +67,13 @@ public:
         @see Component::setVisible
     */
     virtual void componentVisibilityChanged (Component& component);
+    
+    /** Called when the component Occlusion is hidden or visible.
+     
+     @param component    the component that changed
+     @see Component::setVisible
+     */
+    virtual void componentOcclusionVisibilityChanged (Component& component);
 
     /** Called when the component has children added or removed, or their z-order
         changes.

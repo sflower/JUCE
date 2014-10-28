@@ -25,6 +25,7 @@
 void ComponentListener::componentMovedOrResized (Component&, bool, bool)    {}
 void ComponentListener::componentBroughtToFront (Component&)                {}
 void ComponentListener::componentVisibilityChanged (Component&)             {}
+void ComponentListener::componentOcclusionVisibilityChanged (Component&)             {}
 void ComponentListener::componentChildrenChanged (Component&)               {}
 void ComponentListener::componentParentHierarchyChanged (Component&)        {}
 void ComponentListener::componentNameChanged (Component&)                   {}
